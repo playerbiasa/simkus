@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/cpanel', function () {
-    return view('auth.auth-admin');
-});
+Route::view('/example-admin-page', 'example-admin-pages');
+Route::view('/example-admin-auth', 'example-admin-auth');
