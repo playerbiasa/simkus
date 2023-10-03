@@ -33,20 +33,22 @@
                         </h4>
                         <hr>
                         @if (Session::get('fail'))
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger alert-dismissible show fade">
                                 {{ Session::get('fail') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                         @endif
                         <div class="card card-primary">
                             <div class="card-body">
-                                <form method="POST" action="#" class="needs-validation" autocomplete="off">
+                                <form method="POST" action="{{ route('admin.login-handler') }}"
+                                    class="needs-validation" autocomplete="off">
+                                    @csrf
                                     <div class="form-group">
-                                        <label for="email">Email/Username</label>
                                         <input id="login_id" type="text" class="form-control" name="login_id"
-                                            value="{{ old('login_id') }}" tabindex="1" autofocus>
+                                            value="{{ old('login_id') }}" tabindex="1" placeholder="Email/Username"
+                                            autofocus>
                                     </div>
                                     @error('login_id')
                                         <div class="d-block text-danger" style="margin-top: -25px;margin-bottom: 15px;">
@@ -54,16 +56,8 @@
                                         </div>
                                     @enderror
                                     <div class="form-group">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                            <div class="float-right">
-                                                <a href="#" class="text-small">
-                                                    Forgot Password?
-                                                </a>
-                                            </div>
-                                        </div>
                                         <input id="password" type="password" class="form-control" name="password"
-                                            tabindex="2">
+                                            tabindex="2" placeholder="***************">
                                     </div>
                                     @error('password')
                                         <div class="d-block text-danger" style="margin-top: -25px;margin-bottom: 15px;">
@@ -71,6 +65,13 @@
                                         </div>
                                     @enderror
                                     <div class="form-group">
+                                        <div class="d-block">
+                                            <div class="float-right">
+                                                <a href="#" class="text-small">
+                                                    Forgot Password?
+                                                </a>
+                                            </div>
+                                        </div>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="remember" class="custom-control-input"
                                                 tabindex="3" id="remember-me">

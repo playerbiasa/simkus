@@ -1,5 +1,5 @@
 @extends('back.layout.admin.pages-layout')
-@section('pagetitle', @isset($pageTitle) ? $pagetitle : 'Page Title Here')
+@section('pagetitle', @isset($pageTitle) ? $pagetitle : 'Program Studi')
 @push('stylesheets')
     <!-- CSS Libraries -->
 @endpush
@@ -8,18 +8,14 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Blank Page</h1>
+                <h1>Program Studi</h1>
             </div>
 
             <div class="section-body">
             </div>
         </section>
-        -- content here --
     </div>
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
-
-    <!-- Page Specific JS File -->
 @endpush
