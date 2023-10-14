@@ -13,52 +13,79 @@
 
             <div class="section-body">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                    <form action="{{ route('admin.mhs.store') }}" method="post">
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="nim">Nomor Induk Mahasiswa (NIM)</label>
+                                    <input type="text" class="form-control @error('nim') is-invalid @enderror"
+                                        id="nim" name="nim" placeholder="Masukkan NIM"
+                                        value="{{ old('nim') }}">
+                                    @error('nim')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="nama">Nama Mahasiswa</label>
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                        id="nama" name="nama" placeholder="Masukkan Nama Mahasiswa"
+                                        value="{{ old('nama') }}">
+                                    @error('nama')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="prodi">Program Studi</label>
+                                    <select class="form-control @error('prodi_id') is-invalid @enderror" name="prodi_id"
+                                        id="prodi_id">
+                                        <option value="" disabled selected>-- Pilih Program Studi --</option>
+                                        @foreach ($prodis as $prodi)
+                                            <option value="{{ $prodi->id }}">{{ $prodi->jenjang }} {{ $prodi->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('prodi_id')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control @error('nama') is-invalid @enderror"
+                                        id="email" name="email" value="{{ old('email') }}"
+                                        placeholder="Masukkan Email Aktif">
+                                    @error('email')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="phone">Nomor HP</label>
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                        id="phone" name="phone" value="{{ old('email') }}"
+                                        placeholder="Masukkan Nomor HP">
+                                    @error('phone')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        <div class="card-footer text-right">
+                            <a href="{{ route('admin.mhs.index') }}" class="btn btn-warning">Kembali</a>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
-                        <div class="form-group">
-                            <label for="inputAddress2">Address 2</label>
-                            <input type="text" class="form-control" id="inputAddress2"
-                                placeholder="Apartment, studio, or floor">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">City</label>
-                                <input type="text" class="form-control" id="inputCity">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputState">State</label>
-                                <select id="inputState" class="form-control">
-                                    <option selected="">Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="inputZip">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
-                            </div>
-                        </div>
-                        <div class="form-group mb-0">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -67,6 +94,5 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-
     <!-- Page Specific JS File -->
 @endpush

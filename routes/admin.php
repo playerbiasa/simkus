@@ -18,7 +18,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::post('/logout-handler',[AdminController::class,'logoutHandler'])->name('logout-handler');
 
         //ROUTE PRODI
-        Route::resource('/prodi', ProdiController::class);
+        Route::resource('prodi', ProdiController::class);
 
         //ROUTE DOSEN
         Route::get('/dosen',[DosenController::class, 'index'])->name('dosen.index');
@@ -26,6 +26,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         //ROUTE MAHASISWA
         Route::get('/mahasiswa',[MahasiswaController::class, 'index'])->name('mhs.index');
-        Route::get('/mahasiswa-create',[MahasiswaController::class, 'create'])->name('mhs.create');
+        Route::get('/mahasiswa/create',[MahasiswaController::class, 'create'])->name('mhs.create');
+        Route::post('/mahasiswa/store',[MahasiswaController::class, 'store'])->name('mhs.store');
     });
 });
+
+
