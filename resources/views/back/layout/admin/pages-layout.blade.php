@@ -7,7 +7,7 @@
     <title>@yield('pagetitle')</title>
 
     <!-- General CSS Files -->
-    <link rel="stylesheet" href="{{ asset('back/library/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('back/library/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
@@ -51,11 +51,7 @@
 
     <!-- General JS Scripts -->
     <script src="{{ asset('back/library/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('back/library/popper.js/dist/umd/popper.js') }}"></script>
-    <script src="{{ asset('back/library/tooltip.js/dist/umd/tooltip.js') }}"></script>
     <script src="{{ asset('back/library/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('back/library/jquery.nicescroll/dist/jquery.nicescroll.min.js') }}"></script>
-    <script src="{{ asset('back/library/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('back/js/stisla.js') }}"></script>
 
     <!-- Page Specific JS File -->
