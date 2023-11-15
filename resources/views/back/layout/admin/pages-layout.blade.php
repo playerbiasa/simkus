@@ -50,17 +50,18 @@
     </div>
 
     <!-- General JS Scripts -->
-    <script src="{{ asset('back/library/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('back/library/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('back/library/jquery/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('back/library/jquery.nicescroll/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('back/library/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('back/library/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('back/js/stisla.js') }}"></script>
-
-    <!-- Page Specific JS File -->
-    @stack('scripts')
 
     <!-- Template JS File -->
     <script src="{{ asset('back/js/scripts.js') }}"></script>
     <script src="{{ asset('back/js/custom.js') }}"></script>
 
+    <!-- Page Specific JS File -->
+    @stack('scripts')
     <script>
         if (navigator.userAgent.indexOf("Firefox") != -1) {
             history.pushState(null, null, document.URL);

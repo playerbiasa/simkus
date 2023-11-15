@@ -15,3 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/example-admin-page', 'example-admin-pages');
 Route::view('/example-admin-auth', 'example-admin-auth');
+Route::view('/', 'index');
+Route::prefix('layanan')->name('layanan.')->group(function () {
+    Route::view('/', 'back.layout.user.user-layout')->name('login');
+    Route::view('/dashboard', 'front.index');
+    Route::view('/sempro', 'front.sempro.index');
+
+});

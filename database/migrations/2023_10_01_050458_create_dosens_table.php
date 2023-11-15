@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('niy', 20)->unique();
             $table->integer('nidn')->nullable();
-            $table->string('nama', 200)->nullable();
+            $table->string('nama', 200);
             $table->date('tmt')->nullable();
             $table->string('jabatan', 100)->nullable();
             $table->string('jafung', 30)->nullable();
             $table->string('golongan', 4)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
