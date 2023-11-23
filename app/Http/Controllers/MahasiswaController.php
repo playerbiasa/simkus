@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prodi;
+use App\Models\Mahasiswa;
+use App\Models\Sempro;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -26,5 +28,13 @@ class MahasiswaController extends Controller
         ]);
 
         dd($valid);
+    }
+
+    public function dashboard(){
+        $sempros = Sempro::all();
+        $mhss = Mahasiswa::all();
+        $prodis = Prodi::all();
+
+        return view('front.index', compact('sempros','mhss','prodis'));
     }
 }

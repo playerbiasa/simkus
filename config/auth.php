@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Admin;
-
 return [
 
     /*
@@ -23,6 +21,11 @@ return [
     'admin' => [
         'driver' => 'eloquent',
         'passwords' => \App\Models\Admin::class,
+    ],
+
+    'mahasiswa' => [
+        'driver' => 'eloquent',
+        'passwords' => \App\Models\Mahasiswa::class,
     ],
 
     /*
@@ -52,6 +55,11 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+
+        'mahasiswa' => [
+            'driver' => 'session',
+            'provider' => 'mahasiswas',
+        ],
     ],
 
     /*
@@ -80,6 +88,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+
+        'mahasiswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mahasiswa::class,
         ],
 
         // 'users' => [
@@ -118,6 +131,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+
+        'mahasiswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mahasiswa::class,
         ],
     ],
 

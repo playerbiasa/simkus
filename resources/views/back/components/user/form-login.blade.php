@@ -1,15 +1,21 @@
-<form method="POST">
-    <div class="input-group custom">
-        <input type="text" name="username_id" class="form-control form-control-lg" placeholder="Username/Email" />
-        <div class="input-group-append custom">
-            <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
-        </div>
+<form action="{{ route('layanan.layanan-login-handler') }}" method="POST">
+    @csrf
+    <div class="form-group">
+        <input type="text" name="login_id" class="form-control form-control-lg" placeholder="Username/Email"
+            value="{{ old('login_id') }}" />
+        @error('login_id')
+            <div class="form-control-feedback has-warning">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
-    <div class="input-group custom">
+    <div class="form-group">
         <input type="password" name="password" class="form-control form-control-lg" placeholder="**********" />
-        <div class="input-group-append custom">
-            <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
-        </div>
+        @error('password')
+            <div class="form-control-feedback has-warning">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
     <div class="row pb-30">
         <div class="col-6">
@@ -27,7 +33,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="input-group mb-0">
-                <a class="btn btn-primary btn-lg btn-block" href="#">Sign In</a>
+                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Sign in">
             </div>
             <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">
                 OR

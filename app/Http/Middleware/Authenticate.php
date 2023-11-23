@@ -18,6 +18,11 @@ class Authenticate extends Middleware
                 session()->flash('fail','Silahkan login terlebih dahulu');
                 return route('admin.login');
             }
+
+            if($request->routeIs('layanan.*')){
+                session()->flash('fail','Silahkan login terlebih dahulu');
+                return route('layanan.login');
+            }
         }
     }
 }

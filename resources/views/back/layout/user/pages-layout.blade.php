@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('front/vendors/styles/core.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front/vendors/styles/icon-font.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front/vendors/styles/style.min.css') }}" />
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('front/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" />
 
     <!-- CSS Libraries -->
     @stack('stylesheets')
@@ -40,6 +42,7 @@
     <script src="{{ asset('front/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('front/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('front/vendors/scripts/layout-settings.js') }}"></script>
+    <script src="{{ asset('front/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js') }}"></script>
 
     <!-- Page Specific JS File -->
     @stack('scripts')

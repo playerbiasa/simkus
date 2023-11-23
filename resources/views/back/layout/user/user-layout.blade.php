@@ -44,6 +44,14 @@
                         <div class="login-title">
                             <h2 class="text-center text-primary">Login To Layanan</h2>
                         </div>
+                        @if (Session::get('fail'))
+                            <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                                {{ Session::get('fail') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        @endif
                         @include('back.components.user.form-login')
                     </div>
                 </div>
@@ -52,8 +60,8 @@
     </div>
 
     <!-- js -->
-    <script src="{{ asset('front/vendors/scripts/core.min.js') }}vendors/scripts/core.js"></script>
-    <script src="{{ asset('front/vendors/scripts/script.min.js') }}vendors/scripts/script.min.js"></script>
+    <script src="{{ asset('front/vendors/scripts/core.min.js') }}"></script>
+    <script src="{{ asset('front/vendors/scripts/script.min.js') }}"></script>
 </body>
 
 </html>

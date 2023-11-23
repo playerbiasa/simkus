@@ -1,8 +1,8 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="#">
-            <img src="{{ asset('front/vendors/images/deskapp-logo.svg') }}" class="dark-logo" />
-            <img src="{{ asset('front/vendors/images/deskapp-logo-white.svg') }}" class="light-logo" />
+            <img src="{{ asset('front/vendors/images/deskapp-logo.svg') }}" class="dark-logo" alt="logo" />
+            <img src="{{ asset('front/vendors/images/deskapp-logo-white.svg') }}" class="light-logo" alt="logo" />
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>

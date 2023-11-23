@@ -56,13 +56,17 @@
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                     <span class="user-icon">
-                        <img src="{{ asset('front/src/images/photo1.jpg') }}" />
+                        <img src="{{ asset('front/src/images/photo2.jpg') }}" alt="" />
                     </span>
-                    <span class="user-name">Ross C. Lopez</span>
+                    <span class="user-name">{{ Auth::user()->nama }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                     <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
-                    <a class="dropdown-item" href="#"><i class="dw dw-logout"></i> Log Out</a>
+                    <a class="dropdown-item" href="{{ route('layanan.layanan-logout-handler') }}"
+                        onclick="event.preventDefault();document.getElementById('layananLogout').submit();"><i
+                            class="dw dw-logout"></i> Log Out</a>
+                    <form action="{{ route('layanan.layanan-logout-handler') }}" id="layananLogout" method="POST">@csrf
+                    </form>
                 </div>
             </div>
         </div>

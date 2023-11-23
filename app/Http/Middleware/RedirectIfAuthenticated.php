@@ -25,6 +25,10 @@ class RedirectIfAuthenticated
                 if($guard === 'admin'){
                     return redirect()->route('admin.home');
                 }
+
+                if($guard === 'mahasiswa'){
+                    return redirect()->route('layanan.layanan.dashboard');
+                }
             }
         }
 
