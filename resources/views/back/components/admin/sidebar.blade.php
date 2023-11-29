@@ -12,7 +12,7 @@
                     <span>Dashboard</span></a>
             </li>
             <li class="menu-header">Administrasi</li>
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Pengajuan Surat</span></a>
                 <ul class="dropdown-menu">
@@ -21,6 +21,14 @@
                     <li><a class="nav-link" href="#">Observasi Matakuliah</a></li>
                     <li><a class="nav-link" href="#">Observasi Skripsi</a></li>
                     <li><a class="nav-link" href="#">Penelitian Skripsi</a></li>
+                </ul>
+            </li> --}}
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Skripsi</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('admin.sempro.index') }}">Seminar Proposal</a></li>
+                    <li><a class="nav-link" href="#">Sidang Skripsi</a></li>
                 </ul>
             </li>
             <li class="menu-header">Master Data</li>

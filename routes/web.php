@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LayananController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\SemproController;
 use App\Models\Sempro;
@@ -27,10 +28,15 @@ Route::prefix('layanan')->name('layanan.')->group(function () {
     });
 
     Route::middleware(['auth:mahasiswa', 'preventbackhistory'])->group(function () {
-        Route::get('/dashboard', [MahasiswaController::class,'dashboard'])->name('layanan.dashboard');
         Route::post('/logout', [AuthController::class,'logoutUser'])->name('layanan-logout-handler');
-        Route::get('/sempro', [SemproController::class, 'daftar'])->name('sempro.daftar');
+        Route::get('/dashboard', [LayananController::class,'index'])->name('layanan.dashboard');
+
+        // ROUTE SEMPRO
+        Route::get('/sempro', [LayananController::class, 'daftarSempro'])->name('sempro.daftar');
         Route::post('/sempro/store', [SemproController::class, 'store'])->name(('sempro.store'));
+
+        // ROUTE JADWAL
+        Route::get('/jadwal', [LayananController::class, 'jadwalSempro'])->name('sempro.jadwal');
     });
 
 });

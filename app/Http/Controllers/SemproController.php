@@ -2,28 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mahasiswa;
-use App\Models\Prodi;
 use App\Models\Sempro;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class SemproController extends Controller
 {
-    public function daftar(){
-        $mhs = Mahasiswa::all();
-        $prodis = Prodi::get();
+    public function index(){
+        return view('back.pages.admin.sempro.index');
+    }
 
-        return view('front.sempro.daftar-sempro', compact('mhs','prodis'));
+    // get prodi list
+    public function getSemproList()
+    {
+        $sempros = Sempro::all();
+        return DataTables::of($sempros)
+            ->addIndexColumn()
+            ->addColumn('actions', function () {
+                return '<div class="btn-group">
+                <a href="#" class="btn btn-icon btn-sm btn-info"><i class="fas fa-info-circle"></i></a>
+                <a href="#" class="btn btn-icon btn-sm btn-success"><i class="far fa-edit"></i></a>
+                <a href="#" class="btn btn-icon btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                </div>';
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
     }
 
     public function store(Request $request){
-        $validateData   = $request->validate([
+        $this->validate($request,[
             'mahasiswa_id'      => 'required',
             'judul_skripsi'     => 'required'
         ]);
 
-        Sempro::create($validateData);
+        $daftarSempro = new Sempro();
+        $daftarSempro->mahasiswa_id = $request->mahasiswa_id;
+        $daftarSempro->judul_skripsi = $request->judul_skripsi;
+        $daftarSempro->status_daftar = 1;
+        $daftarSempro->save();
+
         return redirect()->route('layanan.layanan.dashboard')
-        ->with('success','Terimakasih telah melakukan pendaftaran sempro, data pendaftaran akan di verifikasi terlebih dahulu');
+        ->with('success','Data pendaftaran akan di verifikasi terlebih dahulu');
     }
 }

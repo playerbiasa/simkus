@@ -26,16 +26,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="calendar.html" class="dropdown-toggle no-arrow">
+                    <a href="{{ route('layanan.sempro.jadwal') }}" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-calendar4-week"></span><span class="mtext">Jadwal Ujian</span>
-                    </a>
-                </li>
-                <li>
-                    <div class="dropdown-divider"></div>
-                </li>
-                <li>
-                    <a href="calendar.html" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-calendar4-week"></span><span class="mtext">Calendar</span>
                     </a>
                 </li>
             </ul>

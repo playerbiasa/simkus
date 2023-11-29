@@ -26,51 +26,57 @@
             </div>
         </div>
         <!-- Default Basic Forms Start -->
-        <div class="pd-20 card-box mb-30">
-            <form action="{{ route('layanan.sempro.store') }}" method="POST">
-                @csrf
-                <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">NIM</label>
-                    <div class="col-sm-12 col-md-10">
-                        <input class="form-control" type="hidden" name="mahasiswa_id" value="{{ Auth::user()->id }}">
-                        <input class="form-control" type="text" name="nim" value="{{ Auth::user()->nim }}" readonly>
+        @if ($daftars->count() > 0)
+            @include('front.sempro.sudah-daftar')
+        @else
+            <div class="pd-20 card-box mb-30">
+                <form action="{{ route('layanan.sempro.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">NIM</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="hidden" name="mahasiswa_id" value="{{ Auth::user()->id }}">
+                            <input class="form-control" type="text" name="nim" value="{{ Auth::user()->nim }}"
+                                readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">Nama</label>
-                    <div class="col-sm-12 col-md-10">
-                        <input class="form-control" type="text" name="nama" value="{{ Auth::user()->nama }}" readonly>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Nama</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="text" name="nama" value="{{ Auth::user()->nama }}"
+                                readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">Program Studi</label>
-                    <div class="col-sm-12 col-md-10">
-                        <select class="custom-select2 form-control" name="prodi" style="width: 100%; height: 38px">
-                            @foreach ($prodis as $prodi)
-                                <option value="{{ $prodi->id }}"
-                                    {{ $prodi->id == Auth::user()->prodi_id ? 'selected' : '' }}>
-                                    {{ $prodi->nama }}</option>
-                            @endforeach
-                        </select>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Program Studi</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select class="custom-select2 form-control" name="prodi" style="width: 100%; height: 38px">
+                                @foreach ($prodis as $prodi)
+                                    <option value="{{ $prodi->id }}"
+                                        {{ $prodi->id == Auth::user()->prodi_id ? 'selected' : '' }}>
+                                        {{ $prodi->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">Judul Skripsi</label>
-                    <div class="col-sm-12 col-md-10">
-                        <textarea class="form-control" id="editorck" name="judul_skripsi" placeholder="Enter text ...">
-                        </textarea>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Judul Skripsi</label>
+                        <div class="col-sm-12 col-md-10">
+                            <textarea class="form-control editorck" name="judul_skripsi" placeholder="Enter text ..." autofocus>
+            </textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="clearfix">
-                    <div class="pull-right">
-                        <button type="submit" class="btn" data-bgcolor="#00aff0" data-color="#ffffff"
-                            style="color: rgb(255, 255, 255); background-color: rgb(0, 175, 240);">
-                            <span class="icon-copy ti-save"></span> Daftar
-                        </button>
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <button type="submit" class="btn" data-bgcolor="#00aff0" data-color="#ffffff"
+                                style="color: rgb(255, 255, 255); background-color: rgb(0, 175, 240);">
+                                <span class="icon-copy ti-save"></span> Daftar
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        @endif
         <!-- Default Basic Forms End -->
     </div>
 @endsection
@@ -83,7 +89,10 @@
     <!-- Page Specific JS File -->
     <script>
         ClassicEditor
-            .create(document.querySelector('#editorck'))
+            .create(document.querySelector('.editorck'), {
+                removePlugins: ['Heading'],
+                toolbar: ['bold', 'italic']
+            })
             .catch(error => {
                 console.error(error);
             });

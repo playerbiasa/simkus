@@ -29,12 +29,4 @@ class MahasiswaController extends Controller
 
         dd($valid);
     }
-
-    public function dashboard(){
-        $sempros = Sempro::all();
-        $mhss = Mahasiswa::all();
-        $prodis = Prodi::all();
-
-        return view('front.index', compact('sempros','mhss','prodis'));
-    }
 }

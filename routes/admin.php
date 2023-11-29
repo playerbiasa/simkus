@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\SemproController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -33,5 +34,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mhs.index');
         Route::get('mahasiswa/create', [MahasiswaController::class, 'create'])->name('mhs.create');
         Route::post('mahasiswa/store', [MahasiswaController::class, 'store'])->name('mhs.store');
+
+        //ROUTE SEMPRO
+        Route::get('sempro', [SemproController::class, 'index'])->name('sempro.index');
+        Route::post('sempro/getSempro', [SemproController::class, 'getSemproList'])->name('sempro.getSempro');
     });
 });

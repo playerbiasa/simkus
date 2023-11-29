@@ -28,35 +28,54 @@
         </div>
     </div>
 
-    <div class="min-height-200px">
-        <!-- Daftar Pengajuan Start -->
-        <div class="card-box pb-10">
-            <div class="h5 pd-20 mb-0">Daftar Pengajuan</div>
-            <table class="data-table table nowrap" aria-describedby="simkus">
-                <thead>
-                    <tr>
-                        <th>Nama</th>y
-                        <th>Program Studi</th>
-                        <th>Tanggal Ajuan</th>
-                        <th>Judul Skripsi</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="card-box mb-30">
+        <div class="pd-20">
+            <h4 class="text-blue h4">Data Pengajuan</h4>
         </div>
-        <!-- Daftar Pengajuan End -->
+        <div class="pb-20">
+            <div class="table-responsive">
+                <table class="table table-striped" aria-label="Data Pengajuan">
+                    <thead>
+                        <tr>
+                            <th scope="col">NIM</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Judul Skripsi</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Tanggal Ajuan</th>
+                            {{-- <th scope="col">Actions</th> --}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($sempros as $item)
+                            <tr>
+                                <td>{{ $item->mahasiswa->nim }}</td>
+                                <td>{{ $item->mahasiswa->nama }}</td>
+                                <td>{!! $item->judul_skripsi !!}</td>
+                                <td>{!! getStatusSkripsi($item->status) !!}</td>
+                                <td>{{ $item->created_at->isoFormat('D MMMM YYYY') }}</td>
+                                {{-- <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                            href="#" role="button" data-toggle="dropdown">
+                                            <i class="dw dw-more"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
+                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+                                        </div>
+                                    </div>
+                                </td> --}}
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
     <script src="{{ asset('front/src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('front/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('front/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>

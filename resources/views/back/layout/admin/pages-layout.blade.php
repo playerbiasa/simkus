@@ -53,7 +53,6 @@
     <script src="{{ asset('back/library/jquery/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('back/library/jquery.nicescroll/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('back/library/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('back/library/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('back/js/stisla.js') }}"></script>
 
     <!-- Template JS File -->
