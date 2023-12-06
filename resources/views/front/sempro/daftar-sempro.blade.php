@@ -26,12 +26,13 @@
             </div>
         </div>
         <!-- Default Basic Forms Start -->
-        @if ($daftars->count() > 0)
+        @if ($daftars > 0)
             @include('front.sempro.sudah-daftar')
         @else
             <div class="pd-20 card-box mb-30">
                 <form action="{{ route('layanan.sempro.store') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="redirect_to" value="{{ route('layanan.layanan.dashboard') }}">
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">NIM</label>
                         <div class="col-sm-12 col-md-10">
@@ -63,7 +64,7 @@
                         <label class="col-sm-12 col-md-2 col-form-label">Judul Skripsi</label>
                         <div class="col-sm-12 col-md-10">
                             <textarea class="form-control editorck" name="judul_skripsi" placeholder="Enter text ..." autofocus>
-            </textarea>
+                        </textarea>
                         </div>
                     </div>
                     <div class="clearfix">

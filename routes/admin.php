@@ -37,6 +37,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //ROUTE SEMPRO
         Route::get('sempro', [SemproController::class, 'index'])->name('sempro.index');
-        Route::post('sempro/getSempro', [SemproController::class, 'getSemproList'])->name('sempro.getSempro');
+        Route::post('sempro', [SemproController::class, 'store'])->name(('sempro.store'));
     });
 });

@@ -6,6 +6,7 @@ use App\Models\Prodi;
 use App\Models\Sempro;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LayananController extends Controller
 {
@@ -18,9 +19,11 @@ class LayananController extends Controller
     }
 
     public function daftarSempro(){
+        $tanggaldaftar = date("Y-m-d");
         $mhs = Mahasiswa::all();
         $prodis = Prodi::get();
-        $daftars = Sempro::where('status_daftar','=', 1)->get();
+        $daftars = Sempro::where('created_at', $tanggaldaftar)->count();
+        // $daftars = Sempro::where('created_at', $tanggaldaftar)->where('mahasiswa_id', $mhsid)->count();
 
         return view('front.sempro.daftar-sempro', compact('mhs','prodis','daftars'));
     }
