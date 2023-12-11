@@ -19,10 +19,10 @@ class LayananController extends Controller
     }
 
     public function daftarSempro(){
-        $tanggaldaftar = date("Y-m-d");
         $mhs = Mahasiswa::all();
+        $mahasiswa_id = Auth::guard('mahasiswa')->user()->id;
         $prodis = Prodi::get();
-        $daftars = Sempro::where('created_at', $tanggaldaftar)->count();
+        $daftars = Sempro::where('mahasiswa_id', $mahasiswa_id)->count();
         // $daftars = Sempro::where('created_at', $tanggaldaftar)->where('mahasiswa_id', $mhsid)->count();
 
         return view('front.sempro.daftar-sempro', compact('mhs','prodis','daftars'));

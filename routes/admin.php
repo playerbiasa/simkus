@@ -34,6 +34,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mhs.index');
         Route::get('mahasiswa/create', [MahasiswaController::class, 'create'])->name('mhs.create');
         Route::post('mahasiswa/store', [MahasiswaController::class, 'store'])->name('mhs.store');
+        Route::post('mahasiswa/import', [MahasiswaController::class, 'import'])->name('mhs.import');
 
         //ROUTE SEMPRO
         Route::get('sempro', [SemproController::class, 'index'])->name('sempro.index');

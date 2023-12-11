@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function dashboard(){
-        if(Auth::guard('admin')->check()){
-            $admins = Admin::findOrFail(auth()->id());
-        }
-        return view('back.pages.admin.home',compact('admins'));
+        return view('back.pages.admin.home');
     }
 
     public function loginHandler(Request $request){
@@ -50,6 +47,7 @@ class AdminController extends Controller
                 Auth::guard('admin')->logout();
                 return redirect()->route('admin.login')->with('fail','Akun anda tidak aktif!');
             }else{
+                $request->session()->regenerate();
                 return redirect()->route('admin.home');
             }
         }else{

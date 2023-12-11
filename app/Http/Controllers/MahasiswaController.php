@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Prodi;
 use App\Models\Mahasiswa;
-use App\Models\Sempro;
 use Illuminate\Http\Request;
+use App\Imports\MahasiswaImport;
+use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MahasiswaController extends Controller
 {
@@ -19,14 +21,30 @@ class MahasiswaController extends Controller
     }
 
     public function store(Request $request){
-        $valid = $request->validate([
+        $validMhs = $request->validate([
             'nim' => 'required|unique:mahasiswas|max:10',
             'nama' => 'required',
             'prodi_id' => 'required',
             'email' => 'required',
-            'phone' => 'required|max:15',
+            'phone' => 'required|numeric',
         ]);
 
-        dd($valid);
+        $validMhs['password'] = Hash::make($request->input('nim'));
+
+        Mahasiswa::create($validMhs);
+
+        return redirect()->route('admin.mhs.index')
+        ->with('success','Data mahasiswa berhasil ditambahkan');
+    }
+
+    public function import(Request $request){
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+        Excel::import(new MahasiswaImport, $file);
+        return redirect()->route('admin.mhs.index')
+        ->with('success','Berhasil import data');
     }
 }

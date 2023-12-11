@@ -4,8 +4,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('back/library/datatables/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('back/library/datatables/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('back/library/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('back/library/toastr/toastr.min.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -20,7 +18,8 @@
                     <div class="col-12 col-md-8 col-lg-8">
                         <div class="card card-primary">
                             <div class="card-body">
-                                <table class="table table-striped nowrap" style="width:100%" id="prodi-table">
+                                <table class="table table-striped nowrap" style="width:100%" id="prodi-table"
+                                    aria-labelledby="simkus">
                                     <thead>
                                         <th>#</th>
                                         <th>Nama Prodi</th>
@@ -76,11 +75,7 @@
 @push('scripts')
     <script src="{{ asset('back/library/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('back/library/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('back/library/sweetalert2/sweetalert2.min.js') }}"></script>
-    <script src="{{ asset('back/library/toastr/toastr.min.js') }}"></script>
     <script>
-        toastr.options.preventDuplicates = true;
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -110,7 +105,6 @@
                         } else {
                             $(form)[0].reset();
                             $('#prodi-table').DataTable().ajax.reload(null, false);
-                            toastr.success(data.msg);
                         }
                     }
                 });
@@ -190,7 +184,6 @@
                             $('.editProdi').modal('hide');
                             // $(form)[0].reset();
                             $('.editProdi').find('form')[0].reset();
-                            toastr.success(data.msg);
                         }
                     }
                 });
@@ -201,31 +194,6 @@
                 var prodi_id = $(this).data('id');
                 var url = '<?= route('admin.prodi.delete') ?>';
 
-                swal.fire({
-                    title: 'Yakin ingin menghapus?',
-                    html: 'Anda ingin <b>menghapus</b> prodi',
-                    showCancelButton: true,
-                    showCloseButton: true,
-                    cancelButtonText: 'Tidak',
-                    confirmButtonText: 'Ya',
-                    cancelButtonColor: '#d33',
-                    confirmButtonColor: '#556ee6',
-                    width: 300,
-                    allowOutsideClick: false
-                }).then(function(result) {
-                    if (result.value) {
-                        $.post(url, {
-                            prodi_id: prodi_id
-                        }, function(data) {
-                            if (data.code == 1) {
-                                $('#prodi-table').DataTable().ajax.reload(null, false);
-                                toastr.success(data.msg);
-                            } else {
-                                toastr.error(data.msg);
-                            }
-                        }, 'json');
-                    }
-                });
             });
         });
     </script>

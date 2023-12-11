@@ -9,22 +9,18 @@ use Illuminate\Http\Request;
 class SemproController extends Controller
 {
     public function index(){
-        $sempros = Sempro::all();
-        $mhss = Mahasiswa::all();
+        $sempros = Sempro::with('mahasiswa')->get();
 
-        return view('back.pages.admin.sempro.index', compact('mhss','sempros'));
+        return view('back.pages.admin.sempro.index', compact('sempros'));
     }
 
     public function store(Request $request){
-        $this->validate($request,[
+        $validSempro = $request->validate([
             'mahasiswa_id'      => 'required',
             'judul_skripsi'     => 'required'
         ]);
 
-        $daftarSempro = new Sempro();
-        $daftarSempro->mahasiswa_id = $request->mahasiswa_id;
-        $daftarSempro->judul_skripsi = $request->judul_skripsi;
-        $daftarSempro->save();
+        Sempro::create($validSempro);
 
         return redirect($request->redirect_to)
         ->with('success','Data pendaftaran akan di verifikasi terlebih dahulu');
