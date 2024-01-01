@@ -33,7 +33,7 @@ Route::prefix('layanan')->name('layanan.')->group(function () {
 
         // ROUTE SEMPRO
         Route::get('/sempro', [LayananController::class, 'daftarSempro'])->name('sempro.daftar');
-        Route::post('/sempro/store', [SemproController::class, 'store'])->name(('sempro.store'));
+        Route::post('/sempro', [SemproController::class, 'store'])->name(('sempro.store'));
 
         // ROUTE JADWAL
         Route::get('/jadwal', [LayananController::class, 'jadwalSempro'])->name('sempro.jadwal');

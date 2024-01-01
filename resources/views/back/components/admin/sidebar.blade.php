@@ -41,8 +41,18 @@
                     <li><a class="nav-link" href="{{ route('admin.mhs.index') }}">Mahasiswa</a></li>
                 </ul>
             </li>
-            <li><a class="nav-link" href="/admin/prodi"><i class="fas fa-map-signs"></i>
-                    <span>Program Studi</span></a></li>
+            <li>
+                <a class="nav-link" href="/admin/prodi"><i class="fas fa-map-signs"></i>
+                    <span>Program Studi</span></a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.kegiatan.index') }}"><i class="fas fa-book-reader"></i>
+                    <span>Kegiatan</span></a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.batch.index') }}"><i class="fas fa-book-open"></i>
+                    <span>Batch</span></a>
+            </li>
             <li class="menu-header">Settings</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i>

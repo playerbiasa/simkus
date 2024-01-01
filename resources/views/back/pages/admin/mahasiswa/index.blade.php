@@ -3,6 +3,7 @@
 @push('stylesheets')
     <link href="{{ asset('back/library/datatables/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('back/library/datatables/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/src/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -52,16 +53,15 @@
 @push('scripts')
     <script src="{{ asset('back/library/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('back/library/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('back/library/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('front/src/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 
     @if (Session::has('success'))
         <script type="text/javascript">
-            swal({
+            Swal.fire({
                 title: "Berhasil",
                 text: "{{ Session::get('success') }}",
-                icon: "success",
-                confirmButtonClass: 'btn btn-success',
-            })
+                icon: "success"
+            });
         </script>
     @endif
 

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('mahasiswa_id');
             $table->text('judul_skripsi');
             $table->date('tanggal_sempro')->nullable();
-            $table->date('jam_mulai')->nullable();
-            $table->date('jam_selesai')->nullable();
+            $table->time('jam_mulai')->nullable();
+            $table->time('jam_selesai')->nullable();
             $table->string('ruang', 10)->nullable();
             $table->smallInteger('status')->default(0);
             $table->text('keterangan')->nullable();

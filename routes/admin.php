@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BatchController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SemproController;
@@ -39,5 +41,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //ROUTE SEMPRO
         Route::get('sempro', [SemproController::class, 'index'])->name('sempro.index');
         Route::post('sempro', [SemproController::class, 'store'])->name(('sempro.store'));
+
+        //ROUTE KEGIATAN
+        Route::get('kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
+        Route::get('kegiatan/create', [KegiatanController::class, 'create'])->name('kegiatan.create');
+        Route::post('kegiatan', [KegiatanController::class, 'store'])->name('kegiatan.store');
+        Route::get('kegiatan/edit/{id}', [KegiatanController::class, 'edit'])->name('kegiatan.edit');
+        Route::put('kegiatan/update/{id}', [KegiatanController::class, 'update'])->name('kegiatan.update');
+        Route::delete('kegiatan/delete/{id}', [KegiatanController::class, 'destroy'])->name('kegiatan.delete');
+
+        //ROUTE BATCH
+        Route::get('batch', [BatchController::class, 'index'])->name('batch.index');
+        Route::get('batch/create', [BatchController::class, 'create'])->name('batch.create');
+        Route::post('batch', [BatchController::class, 'store'])->name('batch.store');
+        Route::get('batch/edit/{id}', [BatchController::class, 'edit'])->name('batch.edit');
+        Route::put('batch/update/{id}', [BatchController::class, 'update'])->name('batch.update');
+        Route::delete('batch/delete/{id}', [BatchController::class, 'destroy'])->name('batch.delete');
     });
 });

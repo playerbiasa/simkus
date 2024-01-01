@@ -4,6 +4,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('back/library/datatables/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('back/library/datatables/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/src/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('back/library/toastr/toastr.min.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -75,6 +77,8 @@
 @push('scripts')
     <script src="{{ asset('back/library/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('back/library/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('front/src/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('front/src/plugins/sweetalert2/sweetalert2global.js') }}"></script>
     <script>
         $.ajaxSetup({
             headers: {
@@ -105,6 +109,10 @@
                         } else {
                             $(form)[0].reset();
                             $('#prodi-table').DataTable().ajax.reload(null, false);
+                            Toast.fire({
+                                icon: "success",
+                                title: data.msg
+                            });
                         }
                     }
                 });
@@ -179,11 +187,19 @@
                             $.each(data.error, function(prefix, val) {
                                 $(form).find('span.' + prefix + '_error').text(val[0]);
                             });
+                            Toast.fire({
+                                icon: "warning",
+                                title: data.msg
+                            });
                         } else {
                             $('#prodi-table').DataTable().ajax.reload(null, false);
                             $('.editProdi').modal('hide');
                             // $(form)[0].reset();
                             $('.editProdi').find('form')[0].reset();
+                            Toast.fire({
+                                icon: "success",
+                                title: data.msg
+                            });
                         }
                     }
                 });
@@ -194,6 +210,36 @@
                 var prodi_id = $(this).data('id');
                 var url = '<?= route('admin.prodi.delete') ?>';
 
+                Swal.fire({
+                    title: 'Are you sure?',
+                    html: 'You want to <b>delete</b> this country',
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    cancelButtonText: 'Cancel',
+                    confirmButtonText: 'Yes, Delete',
+                    cancelButtonColor: '#d33',
+                    confirmButtonColor: '#556ee6',
+                    allowOutsideClick: false
+                }).then(function(result) {
+                    if (result.value) {
+                        $.post(url, {
+                            prodi_id: prodi_id
+                        }, function(data) {
+                            if (data.code == 1) {
+                                $('#prodi-table').DataTable().ajax.reload(null, false);
+                                Toast.fire({
+                                    icon: "success",
+                                    title: data.msg
+                                });
+                            } else {
+                                Toast.fire({
+                                    icon: "warning",
+                                    title: data.msg
+                                });
+                            }
+                        }, 'json');
+                    }
+                });
             });
         });
     </script>

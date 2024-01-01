@@ -12,9 +12,17 @@
             </div>
 
             <div class="section-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="card card-primary">
+                            <div class="card-body">
+                                --- ini content ---
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-        -- content here --
     </div>
 @endsection
 

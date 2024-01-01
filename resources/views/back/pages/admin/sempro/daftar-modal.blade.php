@@ -14,17 +14,17 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nomor Induk Mahasiswa (NIM)</label>
-                        <input type="text" class="form-control" value="" required="">
+                        <input type="hidden" name="redirect_to" value="{{ route('admin.sempro.index') }}">
+                        <input type="hidden" id="mahasiswa_id" name="mahasiswa_id">
+                        <input type="text" class="form-control" id="nim" name="nim" required>
                     </div>
                     <div class="form-group">
                         <label>Nama</label>
-                        <input type="text" class="form-control" value="" required="">
+                        <input type="text" class="form-control" id="nama" name="nama" required>
                     </div>
                     <div class="form-group">
                         <label>Program Studi</label>
-                        <select class="custom-select2 form-control" name="prodi" style="width: 100%; height: 38px">
-                            <option value="">Akuntansi</option>
-                        </select>
+                        <input type="text" class="form-control" id="prodi_id" name="prodi_id" required>
                     </div>
                     <div class="form-group">
                         <label>Judul Skripsi</label>

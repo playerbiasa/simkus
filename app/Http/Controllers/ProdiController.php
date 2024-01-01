@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -95,12 +96,14 @@ class ProdiController extends Controller
     //delete prodi record
     public function deleteProdi(Request $request){
         $prodi_id = $request->prodi_id;
-        $query = Prodi::find($prodi_id)->delete();
 
-        if ($query) {
-            return response()->json(['code'=>1,'msg'=>'Data Prodi berhasil dihapus']);
-        }else{
+        // dd(Mahasiswa::where("prodi_id",$prodi_id)->count());
+
+        if (Mahasiswa::where("prodi_id",$prodi_id)->count()>0) {
             return response()->json(['code'=>0,'msg'=>'Data Prodi gagal dihapus']);
+        }else{
+            Prodi::find($prodi_id)->delete();
+            return response()->json(['code'=>1,'msg'=>'Data Prodi berhasil dihapus']);
         }
     }
 }

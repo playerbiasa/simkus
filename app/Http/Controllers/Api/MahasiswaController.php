@@ -29,4 +29,30 @@ class MahasiswaController extends Controller
             ->rawColumns(['actions'])
             ->make(true);
     }
+
+    // get mahasiswa data sempro
+    public function getMahasiswa(Request $request)
+    {
+        $search     = $request->search;
+
+        if ($search == '') {
+            $datas    = Mahasiswa::orderby('nim', 'asc')->with('prodi')->limit(10)->get();
+        } else {
+            $datas    = Mahasiswa::orderby('nim', 'asc')
+            ->where('nim', 'like', '%' . $search . '%')->with('prodi')->limit(10)->get();
+        }
+
+        $response = array();
+        foreach ($datas as $mahasiswa) {
+            $response[] = array(
+                "nim"       => $mahasiswa->nim,
+                "label"     => $mahasiswa->nim . ' | ' . $mahasiswa->nama . ' | ' . $mahasiswa->prodi->nama,
+                "nama"      => $mahasiswa->nama,
+                "prodi"      => $mahasiswa->prodi->jenjang . ' ' . $mahasiswa->prodi->nama,
+                "id"        => $mahasiswa->id
+            );
+        }
+
+        return response()->json($response);
+    }
 }

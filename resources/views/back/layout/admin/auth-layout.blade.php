@@ -95,7 +95,7 @@
     </div>
 
     <!-- General JS Scripts -->
-    <script src="{{ asset('back/library/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('back/library/jquery/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('back/library/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('back/js/stisla.js') }}"></script>
 

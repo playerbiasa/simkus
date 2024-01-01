@@ -6,7 +6,7 @@
         href="{{ asset('front/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
     <link rel="stylesheet" type="text/css"
         href="{{ asset('front/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('front/src/plugins/sweetalert2/sweetalert2.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('front/src/plugins/sweetalert2/sweetalert2.min.css') }}" type="text/css">
 @endpush
 
 @section('content')
@@ -80,18 +80,17 @@
     <script src="{{ asset('front/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('front/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('front/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('front/src/plugins/sweetalert2/sweetalert2.all.js') }}"></script>
+    <script src="{{ asset('front/src/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
 
     @if (Session::has('success'))
         <script type="text/javascript">
-            swal({
-                title: 'Pendaftaran Sempro Berhasil',
+            Swal.fire({
+                title: "Pendaftaran Sempro Berhasil",
                 text: "{{ Session::get('success') }}",
-                type: 'success',
-                confirmButtonClass: 'btn btn-success',
-            })
+                icon: "success"
+            });
         </script>
     @endif
 
