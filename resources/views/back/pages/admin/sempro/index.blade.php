@@ -2,6 +2,7 @@
 @section('pagetitle', @isset($pageTitle) ? $pagetitle : 'Seminar Proposal')
 @push('stylesheets')
     <link rel="stylesheet" href="{{ asset('back/library/jquery-ui/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/src/plugins/sweetalert2/sweetalert2.min.css') }}">
 @endpush
 
 @section('content')
@@ -26,12 +27,9 @@
                                 Cetak</button>
                         </div>
                         <div class="card card-primary">
-                            <div class="card-header">
-                                pencarian
-                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" aria-labelledby="simkus">
+                                    <table class="table table-bordered table-md" aria-labelledby="simkus">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -48,11 +46,31 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->mahasiswa->nama }}</td>
-                                                    <td></td>
+                                                    <td>{{ $item->mahasiswa->prodi->nama }}</td>
                                                     <td>{{ $item->created_at->isoFormat('D MMMM YYYY') }}</td>
+                                                    <td>{{ $item->batch->nama }} - {{ $item->batch->kegiatan->nama }} -
+                                                        {{ $item->batch->tahun }}
+                                                    </td>
                                                     <td>{!! getStatusSkripsi($item->status) !!}</td>
-                                                    <td></td>
-                                                    <td>Actions</td>
+                                                    <td>
+                                                        <div class="btn-group mb-2">
+                                                            <button class="btn btn-info btn-sm dropdown-toggle"
+                                                                type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">option
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('admin.sempro.edit', $item->id) }}">Edit</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('admin.sempro.status', $item->id) }}">Ubah
+                                                                    Daftar</a>
+                                                                @if ($item->status == 2)
+                                                                    <a class="dropdown-item" href="#">Set Penguji</a>
+                                                                @endif
+                                                                <a class="dropdown-item" href="#">Hapus</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -71,11 +89,20 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    <script src="{{ asset('front/vendors/scripts/advanced-components.js') }}"></script>
     <script src="{{ asset('back/library/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('front/src/plugins/ckeditor5/ckeditor.js') }}"></script>
-
+    <script src="{{ asset('front/src/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <!-- Page Specific JS File -->
+    @if (Session::has('success'))
+        <script type="text/javascript">
+            Swal.fire({
+                title: "Berhasil",
+                text: "{{ Session::get('success') }}",
+                icon: "success"
+            });
+        </script>
+    @endif
+
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $(document).ready(function() {

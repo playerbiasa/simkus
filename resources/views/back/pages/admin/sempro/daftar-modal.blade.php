@@ -20,16 +20,24 @@
                     </div>
                     <div class="form-group">
                         <label>Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required>
+                        <input type="text" class="form-control" id="nama" name="nama" required readonly>
                     </div>
                     <div class="form-group">
                         <label>Program Studi</label>
-                        <input type="text" class="form-control" id="prodi_id" name="prodi_id" required>
+                        <input type="text" class="form-control" id="prodi_id" name="prodi_id" required readonly>
                     </div>
                     <div class="form-group">
                         <label>Judul Skripsi</label>
                         <textarea class="form-control editorck" name="judul_skripsi" placeholder="Enter text ..." autofocus>
                         </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Batch Kegiatan</label>
+                        <select class="form-control" name="batch_id" id="batch_id" required>
+                            @foreach ($batches as $batch)
+                            <option value="{{ $batch->id }}">{{ $batch->nama }} | {{ $batch->kegiatan->deskripsi }} | {{ $batch->tahun }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

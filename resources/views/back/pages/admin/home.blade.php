@@ -23,7 +23,7 @@
                             <h4>Total Mahasiswa Skripsi</h4>
                         </div>
                         <div class="card-body">
-                            10
+                            {{ $mhss->count() }}
                         </div>
                     </div>
                 </div>
@@ -35,10 +35,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>News</h4>
+                            <h4>Seminar Proposal Skripsi</h4>
                         </div>
                         <div class="card-body">
-                            42
+                            {{ $sempros->count() }}
                         </div>
                     </div>
                 </div>
@@ -50,10 +50,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Reports</h4>
+                            <h4>Ujian Sidang Skripsi</h4>
                         </div>
                         <div class="card-body">
-                            1,201
+                            {{ $skripsis->count() }}
                         </div>
                     </div>
                 </div>

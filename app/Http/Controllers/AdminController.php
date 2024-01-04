@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Sempro;
+use App\Models\Skripsi;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function dashboard(){
-        return view('back.pages.admin.home');
+        $mhss = Mahasiswa::all();
+        $sempros = Sempro::all();
+        $skripsis = Skripsi::all();
+        return view('back.pages.admin.home', compact('mhss','sempros','skripsis'));
     }
 
     public function loginHandler(Request $request){

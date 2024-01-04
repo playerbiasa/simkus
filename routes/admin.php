@@ -41,6 +41,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //ROUTE SEMPRO
         Route::get('sempro', [SemproController::class, 'index'])->name('sempro.index');
         Route::post('sempro', [SemproController::class, 'store'])->name(('sempro.store'));
+        Route::get('sempro/edit/{id}', [SemproController::class, 'edit'])->name('sempro.edit');
+        Route::get('sempro/status/{id}', [SemproController::class, 'status'])->name('sempro.status');
+        Route::put('sempro/status/{id}', [SemproController::class, 'updateStatus'])->name('sempro.status.update');
 
         //ROUTE KEGIATAN
         Route::get('kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
