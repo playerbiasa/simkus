@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('dosens', function (Blueprint $table) {
             $table->id();
             $table->string('niy', 20)->unique();
-            $table->integer('nidn')->nullable();
+            $table->integer('nidn');
             $table->string('nama', 200);
-            $table->date('tmt')->nullable();
-            $table->string('jabatan', 100)->nullable();
-            $table->string('jafung', 30)->nullable();
-            $table->string('golongan', 4)->nullable();
+            $table->string('jabatan', 100);
+            $table->string('password');
             $table->timestamps();
             $table->softDeletes();
         });

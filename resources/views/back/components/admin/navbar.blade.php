@@ -213,7 +213,7 @@
                     <i class="fas fa-cog"></i> Settings
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="{{ route('admin.logout-handler') }}" class="dropdown-item has-icon text-danger"
+                <a href="" class="dropdown-item has-icon text-danger"
                     onclick="event.preventDefault();document.getElementById('adminLogoutForm').submit();">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>

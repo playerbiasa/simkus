@@ -29,8 +29,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('prodi/deleteProdi', [ProdiController::class, 'deleteProdi'])->name('prodi.delete');
 
         //ROUTE DOSEN
-        Route::get('dosen', [DosenController::class, 'index'])->name('dosen.index');
-        Route::get('pimpinan', [DosenController::class, 'pimpinan'])->name('dosen.pimpinan');
+        Route::prefix('dosen')->group(function () {
+            Route::get('/', [DosenController::class, 'index'])->name('dosen.index');
+            Route::post('/', [DosenController::class, 'store'])->name('dosen.store');
+            Route::get('/create', [DosenController::class, 'create'])->name('dosen.create');
+            Route::get('/edit/{id}', [DosenController::class, 'edit'])->name('dosen.edit');
+            Route::put('/update/{id}', [DosenController::class, 'update'])->name('dosen.update');
+            Route::delete('/delete/{id}', [DosenController::class, 'destroy'])->name('dosen.delete');
+        });
 
         //ROUTE MAHASISWA
         Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mhs.index');

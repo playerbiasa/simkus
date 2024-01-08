@@ -10,7 +10,23 @@ class DosenController extends Controller
         return view ('back.pages.admin.dosen.index');
     }
 
-    public function pimpinan(){
-        return view ('back.pages.admin.dosen.pimpinan');
+    public function create(){
+        return view ('back.pages.admin.dosen.create');
+    }
+
+    public function store(Request $request){
+
+    }
+
+    public function edit($id){
+
+    }
+
+    public function update(Request $request, $id){
+
+    }
+
+    public function destroy($id){
+
     }
 }

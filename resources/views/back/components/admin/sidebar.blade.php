@@ -36,7 +36,6 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i>
                     <span>Civitas Akademik</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('admin.dosen.pimpinan') }}">Pimpinan</a></li>
                     <li><a class="nav-link" href="{{ route('admin.dosen.index') }}">Dosen</a></li>
                     <li><a class="nav-link" href="{{ route('admin.mhs.index') }}">Mahasiswa</a></li>
                 </ul>
