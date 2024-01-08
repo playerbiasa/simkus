@@ -65,9 +65,19 @@
                                                                     href="{{ route('admin.sempro.status', $item->id) }}">Ubah
                                                                     Daftar</a>
                                                                 @if ($item->status == 2)
-                                                                    <a class="dropdown-item" href="#">Set Penguji</a>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('admin.sempro.addpenguji', $item->id) }}">Set
+                                                                        Penguji</a>
                                                                 @endif
-                                                                <a class="dropdown-item" href="#">Hapus</a>
+                                                                <form
+                                                                    action="{{ route('admin.sempro.delete', $item->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="dropdown-item show_confirm"
+                                                                        style="font-size: 14px">Hapus</button>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -143,5 +153,29 @@
             .catch(error => {
                 console.error(error);
             });
+
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            event.preventDefault();
+            Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your data has been deleted.',
+                            'success'
+                        )
+                    }
+                });
+        });
     </script>
 @endpush

@@ -36,7 +36,21 @@ class SemproController extends Controller
     }
 
     public function update(Request $request, string $id){
+        $valid = $request->validate([
+            'judul_skripsi' => 'required',
+        ]);
 
+        $sempro = Sempro::findOrFail($id);
+        $sempro->update($valid);
+        return redirect()->route('admin.sempro.index')
+        ->with('success','Data pendaftaran berhasil diubah');
+    }
+
+    public function destroy(string $id){
+        $sempros = Sempro::findOrFail($id);
+        $sempros->delete();
+        return redirect()->route('admin.sempro.index')
+        ->with('success','Data pendaftaran berhasil di hapus');
     }
 
     public function status(string $id){
@@ -55,5 +69,10 @@ class SemproController extends Controller
         return redirect()->route('admin.sempro.index')
         ->with('success','Status pendaftaran berhasil diubah');
 
+    }
+
+    public function addPenguji(string $id){
+        $sempros = Sempro::findOrFail($id);
+        return view('back.pages.admin.sempro.addpenguji', compact('sempros'));
     }
 }

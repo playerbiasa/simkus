@@ -39,11 +39,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('mahasiswa/import', [MahasiswaController::class, 'import'])->name('mhs.import');
 
         //ROUTE SEMPRO
-        Route::get('sempro', [SemproController::class, 'index'])->name('sempro.index');
-        Route::post('sempro', [SemproController::class, 'store'])->name(('sempro.store'));
-        Route::get('sempro/edit/{id}', [SemproController::class, 'edit'])->name('sempro.edit');
-        Route::get('sempro/status/{id}', [SemproController::class, 'status'])->name('sempro.status');
-        Route::put('sempro/status/{id}', [SemproController::class, 'updateStatus'])->name('sempro.status.update');
+        Route::prefix('sempro')->group(function () {
+            Route::get('/', [SemproController::class, 'index'])->name('sempro.index');
+            Route::post('/', [SemproController::class, 'store'])->name(('sempro.store'));
+            Route::get('/edit/{id}', [SemproController::class, 'edit'])->name('sempro.edit');
+            Route::put('/update/{id}', [SemproController::class, 'update'])->name('sempro.update');
+            Route::delete('/delete/{id}', [SemproController::class, 'destroy'])->name('sempro.delete');
+            Route::get('/status/{id}', [SemproController::class, 'status'])->name('sempro.status');
+            Route::put('/status/{id}', [SemproController::class, 'updateStatus'])->name('sempro.status.update');
+            Route::get('/addpenguji/{id}', [SemproController::class, 'addPenguji'])->name('sempro.addpenguji');
+        });
 
         //ROUTE KEGIATAN
         Route::get('kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
