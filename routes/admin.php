@@ -21,12 +21,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('logout-handler', [AdminController::class, 'logoutHandler'])->name('logout-handler');
 
         //ROUTE PRODI
-        Route::get('prodi', [ProdiController::class, 'index'])->name('prodi.index');
-        Route::post('prodi/add-prodi', [ProdiController::class, 'addProdi'])->name('prodi.add.prodi');
-        Route::get('prodi/getProdiList', [ProdiController::class, 'getProdiList'])->name('prodi.getprodi.list');
-        Route::post('prodi/getProdiDetails', [ProdiController::class, 'getProdiDetails'])->name('prodi.getprodi.details');
-        Route::post('prodi/updateProdi', [ProdiController::class, 'updateProdiDetails'])->name('prodi.update.details');
-        Route::post('prodi/deleteProdi', [ProdiController::class, 'deleteProdi'])->name('prodi.delete');
+        Route::prefix('prodi')->group(function () {
+            Route::get('/', [ProdiController::class, 'index'])->name('prodi.index');
+            Route::post('/add-prodi', [ProdiController::class, 'addProdi'])->name('prodi.add.prodi');
+            Route::get('/getProdiList', [ProdiController::class, 'getProdiList'])->name('prodi.getprodi.list');
+            Route::post('/getProdiDetails', [ProdiController::class, 'getProdiDetails'])->name('prodi.getprodi.details');
+            Route::post('/updateProdi', [ProdiController::class, 'updateProdiDetails'])->name('prodi.update.details');
+            Route::post('/deleteProdi', [ProdiController::class, 'deleteProdi'])->name('prodi.delete');
+        });
 
         //ROUTE DOSEN
         Route::prefix('dosen')->group(function () {
@@ -36,13 +38,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/edit/{id}', [DosenController::class, 'edit'])->name('dosen.edit');
             Route::put('/update/{id}', [DosenController::class, 'update'])->name('dosen.update');
             Route::delete('/delete/{id}', [DosenController::class, 'destroy'])->name('dosen.delete');
+            Route::post('/import', [DosenController::class, 'import'])->name('dosen.import');
         });
 
         //ROUTE MAHASISWA
-        Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mhs.index');
-        Route::get('mahasiswa/create', [MahasiswaController::class, 'create'])->name('mhs.create');
-        Route::post('mahasiswa/store', [MahasiswaController::class, 'store'])->name('mhs.store');
-        Route::post('mahasiswa/import', [MahasiswaController::class, 'import'])->name('mhs.import');
+        Route::prefix('mahasiswa')->group(function () {
+            Route::get('/', [MahasiswaController::class, 'index'])->name('mhs.index');
+            Route::post('/', [MahasiswaController::class, 'store'])->name('mhs.store');
+            Route::get('/create', [MahasiswaController::class, 'create'])->name('mhs.create');
+            Route::post('/import', [MahasiswaController::class, 'import'])->name('mhs.import');
+        });
 
         //ROUTE SEMPRO
         Route::prefix('sempro')->group(function () {
@@ -53,23 +58,32 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::delete('/delete/{id}', [SemproController::class, 'destroy'])->name('sempro.delete');
             Route::get('/status/{id}', [SemproController::class, 'status'])->name('sempro.status');
             Route::put('/status/{id}', [SemproController::class, 'updateStatus'])->name('sempro.status.update');
-            Route::get('/addpenguji/{id}', [SemproController::class, 'addPenguji'])->name('sempro.addpenguji');
+            Route::get('/penguji/{id}', [SemproController::class, 'penguji'])->name('sempro.penguji');
+            Route::get('/penguji/{id}/add', [SemproController::class, 'addPenguji'])->name('sempro.penguji.add');
+            Route::post('/penguji/{id}', [SemproController::class, 'storePenguji'])->name('sempro.penguji.store');
+            Route::put('/penguji/{id}', [SemproController::class, 'updatePenguji'])->name('sempro.penguji.update');
+            Route::delete('/penguji/{id}', [SemproController::class, 'destroyPenguji'])->name('sempro.penguji.delete');
         });
 
         //ROUTE KEGIATAN
-        Route::get('kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
-        Route::get('kegiatan/create', [KegiatanController::class, 'create'])->name('kegiatan.create');
-        Route::post('kegiatan', [KegiatanController::class, 'store'])->name('kegiatan.store');
-        Route::get('kegiatan/edit/{id}', [KegiatanController::class, 'edit'])->name('kegiatan.edit');
-        Route::put('kegiatan/update/{id}', [KegiatanController::class, 'update'])->name('kegiatan.update');
-        Route::delete('kegiatan/delete/{id}', [KegiatanController::class, 'destroy'])->name('kegiatan.delete');
+        Route::prefix('kegiatan')->group(function () {
+            Route::get('/', [KegiatanController::class, 'index'])->name('kegiatan.index');
+            Route::post('/', [KegiatanController::class, 'store'])->name('kegiatan.store');
+            Route::get('/create', [KegiatanController::class, 'create'])->name('kegiatan.create');
+            Route::get('/edit/{id}', [KegiatanController::class, 'edit'])->name('kegiatan.edit');
+            Route::put('/update/{id}', [KegiatanController::class, 'update'])->name('kegiatan.update');
+            Route::delete('/delete/{id}', [KegiatanController::class, 'destroy'])->name('kegiatan.delete');
+        });
+
 
         //ROUTE BATCH
-        Route::get('batch', [BatchController::class, 'index'])->name('batch.index');
-        Route::get('batch/create', [BatchController::class, 'create'])->name('batch.create');
-        Route::post('batch', [BatchController::class, 'store'])->name('batch.store');
-        Route::get('batch/edit/{id}', [BatchController::class, 'edit'])->name('batch.edit');
-        Route::put('batch/update/{id}', [BatchController::class, 'update'])->name('batch.update');
-        Route::delete('batch/delete/{id}', [BatchController::class, 'destroy'])->name('batch.delete');
+        Route::prefix('batch')->group(function () {
+            Route::get('/', [BatchController::class, 'index'])->name('batch.index');
+            Route::post('/', [BatchController::class, 'store'])->name('batch.store');
+            Route::get('/create', [BatchController::class, 'create'])->name('batch.create');
+            Route::get('/edit/{id}', [BatchController::class, 'edit'])->name('batch.edit');
+            Route::put('/update/{id}', [BatchController::class, 'update'])->name('batch.update');
+            Route::delete('/delete/{id}', [BatchController::class, 'destroy'])->name('batch.delete');
+        });
     });
 });

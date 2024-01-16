@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         Admin::create([
-            'nama' => 'Admin SIMKU',
+            'nama' => 'Muhammad Slamet',
             'username' => 'admin1',
             'email' => 'admin1@gmail.com',
             'email_verified_at' => now(),
@@ -25,9 +25,19 @@ class AdminSeeder extends Seeder
         ]);
 
         Admin::create([
-            'nama' => 'Admin SIMKU 2',
+            'nama' => 'Adi Cahyono',
             'username' => 'admin2',
             'email' => 'admin2@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456'),
+            'status' => 1,
+            'remember_token' => rand()
+        ]);
+
+        Admin::create([
+            'nama' => 'Humaidi',
+            'username' => 'admin3',
+            'email' => 'admin3@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
             'status' => 1,

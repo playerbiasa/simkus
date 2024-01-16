@@ -18,4 +18,8 @@ class Sempro extends Model
     public function batch(){
         return $this->belongsTo(Batch::class);
     }
+
+    public function dosen(){
+        return $this->belongsToMany(Dosen::class)->withPivot('sebagai', 'ke')->orderBy('ke', 'asc')->withTimestamps();
+    }
 }

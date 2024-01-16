@@ -3,9 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LayananController;
-use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\SemproController;
-use App\Models\Sempro;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +36,4 @@ Route::prefix('layanan')->name('layanan.')->group(function () {
         // ROUTE JADWAL
         Route::get('/jadwal', [LayananController::class, 'jadwalSempro'])->name('sempro.jadwal');
     });
-
 });

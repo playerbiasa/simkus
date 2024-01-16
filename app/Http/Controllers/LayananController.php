@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use App\Models\Prodi;
 use App\Models\Sempro;
 use App\Models\Mahasiswa;
@@ -31,4 +32,37 @@ class LayananController extends Controller
     public function jadwalSempro(){
         return view('front.jadwal.jadwal');
     }
+
+    public function dosenDashboard(){
+        $sempros = Sempro::with('mahasiswa')->get();
+        return view('front.dosen-home', compact('sempros'));
+    }
+
+    public function dosenSempro(){
+        $sempros = Sempro::with('mahasiswa')->get();
+        return view('front.dosen.sempro', compact('sempros'));
+    }
+
+    public function dosenSkripsi(){
+        return view('front.dosen.skripsi');
+    }
+
+    public function setDosenPenguji(string $id){
+        $sempros = Sempro::findOrFail($id);
+        return view('front.dosen.set-penguji', compact('sempros'));
+    }
+
+    public function addDosenPenguji(string $id){
+        $sempros = Sempro::findOrFail($id);
+        $dosens = Dosen::orderBy('nama', 'asc')->get();
+        return view('front.dosen.add-penguji', compact('sempros','dosens'));
+    }
+
+    public function saveDosenPenguji(string $id){
+        $sempros = Sempro::findOrFail($id);
+        $sempros->dosen()->attach(request('dosen_id'));
+        return redirect()->route('dosen.sempro.penguji', $id)
+        ->with('success','Dosen penguji berhasil di tambahkan');
+    }
+
 }

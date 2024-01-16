@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('nama', 200);
             $table->string('jabatan', 100);
             $table->string('password');
+            $table->string('email')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -30,6 +30,9 @@
                     <a class="nav-link" href="{{ route('layanan.login') }}">Login Mahasiswa</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dosen.login') }}">Login Kaprodi</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.login') }}">Login Admin</a>
                 </li>
             </ul>

@@ -62,11 +62,24 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                     <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
-                    <a class="dropdown-item" href="{{ route('layanan.layanan-logout-handler') }}"
-                        onclick="event.preventDefault();document.getElementById('layananLogout').submit();"><i
-                            class="dw dw-logout"></i> Log Out</a>
-                    <form action="{{ route('layanan.layanan-logout-handler') }}" id="layananLogout" method="POST">@csrf
-                    </form>
+                    @if (Auth::guard('mahasiswa')->check())
+                        <a class="dropdown-item" href="{{ route('layanan.layanan-logout-handler') }}"
+                            onclick="event.preventDefault();document.getElementById('layananLogout').submit();"><i
+                                class="dw dw-logout"></i> Log Out</a>
+                        <form action="{{ route('layanan.layanan-logout-handler') }}" id="layananLogout" method="POST">
+                            @csrf
+                        </form>
+                    @elseif (Auth::guard('dosen')->check())
+                        <a class="dropdown-item" href="{{ route('dosen.logout-handler') }}"
+                            onclick="event.preventDefault();document.getElementById('dosenLogout').submit();"><i
+                                class="dw dw-logout"></i> Log Out</a>
+                        <form action="{{ route('dosen.logout-handler') }}" id="dosenLogout" method="POST">@csrf
+                        </form>
+                    @endif
+
+
+                    {{-- logout dosen --}}
+
                 </div>
             </div>
         </div>

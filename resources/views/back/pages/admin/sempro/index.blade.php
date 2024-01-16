@@ -64,11 +64,9 @@
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('admin.sempro.status', $item->id) }}">Ubah
                                                                     Daftar</a>
-                                                                @if ($item->status == 2)
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('admin.sempro.addpenguji', $item->id) }}">Set
-                                                                        Penguji</a>
-                                                                @endif
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('admin.sempro.penguji', $item->id) }}">Set
+                                                                    Penguji</a>
                                                                 <form
                                                                     action="{{ route('admin.sempro.delete', $item->id) }}"
                                                                     method="POST">
@@ -169,11 +167,6 @@
                 .then((result) => {
                     if (result.isConfirmed) {
                         form.submit();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your data has been deleted.',
-                            'success'
-                        )
                     }
                 });
         });
