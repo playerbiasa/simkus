@@ -97,8 +97,6 @@ class ProdiController extends Controller
     public function deleteProdi(Request $request){
         $prodi_id = $request->prodi_id;
 
-        // dd(Mahasiswa::where("prodi_id",$prodi_id)->count());
-
         if (Mahasiswa::where("prodi_id",$prodi_id)->count()>0) {
             return response()->json(['code'=>0,'msg'=>'Data Prodi gagal dihapus']);
         }else{

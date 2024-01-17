@@ -1,7 +1,7 @@
 @extends('back.layout.user.pages-layout')
 @section('pagetitle', @isset($pageTitle) ? $pagetitle : 'Dosen | Seminar Proposal')
 @push('stylesheets')
-    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('front/src/plugins/select2/select2.min.css') }}">
 @endpush
 
 @section('content')
@@ -29,7 +29,7 @@
         <div class="pd-20 card-box mb-30">
             <div class="card card-primary">
                 <div class="card-body table-responsive">
-                    <form action="{{ route('admin.sempro.penguji.store', $sempros->id) }}" method="POST"
+                    <form action="{{ route('dosen.sempro.penguji.save', $sempros->id) }}" method="POST"
                         class="form-horizontal">
                         @csrf
                         <div class="form-group row">
@@ -86,4 +86,11 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('front/src/plugins/select2/select2.min.js') }}"></script>
+    <script>
+        // Inisialisasi Select2 pada elemen dengan ID 'pilihan'
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 @endpush

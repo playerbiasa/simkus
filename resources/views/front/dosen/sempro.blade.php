@@ -48,10 +48,20 @@
                                 <td>{{ $sempro->mahasiswa->prodi->nama }}</td>
                                 <td>{{ $sempro->created_at->isoFormat('D MMMM YYYY') }}</td>
                                 <td>
-                                    <a href="{{ route('dosen.sempro.penguji', $sempro->id) }}"
-                                        class="btn btn-primary btn-sm">
-                                        Set Penguji
-                                    </a>
+                                    @if ($sempro->status == 0)
+                                        <span class="badge badge-info">Baru</span>
+                                    @elseif ($sempro->status == 2)
+                                        <a href="{{ route('dosen.sempro.penguji', $sempro->id) }}"
+                                            class="badge badge-primary">
+                                            Set Penguji
+                                        </a>
+                                    @else
+                                        <span class="badge badge-success">Diterima</span>
+                                        <a href="{{ route('dosen.sempro.penguji', $sempro->id) }}"
+                                            class="badge badge-warning">
+                                            Ubah Penguji
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

@@ -14,4 +14,8 @@ class Prodi extends Model
         'singkatan',
         'jenjang'
     ];
+
+    public function sempro() {
+        return $this->hasMany(Sempro::class);
+    }
 }

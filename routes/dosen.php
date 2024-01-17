@@ -16,8 +16,8 @@ Route::prefix('dosen')->name('dosen.')->group(function () {
         Route::get('/sempro/penguji/{id}', [LayananController::class,'setDosenPenguji'])->name('sempro.penguji');
         Route::get('/sempro/penguji/{id}/add', [LayananController::class,'addDosenPenguji'])->name('sempro.penguji.add');
         Route::post('/sempro/penguji/{id}', [LayananController::class,'saveDosenPenguji'])->name('sempro.penguji.save');
-
-
+        Route::put('/sempro/penguji/{id}', [LayananController::class,'saveJadwal'])->name('sempro.jadwal');
+        Route::delete('/sempro/penguji/{id}', [LayananController::class,'destroyPenguji'])->name('sempro.penguji.delete');
         Route::get('/skripsi', [LayananController::class,'dosenSkripsi'])->name('skripsi');
     });
 });

@@ -38,4 +38,8 @@ class Mahasiswa extends Authenticatable
     {
         return $this->belongsTo(Prodi::class);
     }
+
+    public function sempro() {
+        return $this->hasMany(Sempro::class);
+    }
 }

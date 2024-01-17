@@ -15,6 +15,10 @@ class Sempro extends Model
         return $this->belongsTo(Mahasiswa::class);
     }
 
+    public function prodi() {
+        return $this->belongsTo(Prodi::class);
+    }
+
     public function batch(){
         return $this->belongsTo(Batch::class);
     }

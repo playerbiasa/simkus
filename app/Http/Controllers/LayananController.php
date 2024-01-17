@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 class LayananController extends Controller
 {
+    private $ruang    = ["2.06", "2.09", "2.10", "3.06", "3.07", "3.10"];
+
     public function index(){
         $sempros = Sempro::all();
         $mhss = Mahasiswa::all();
@@ -39,7 +41,12 @@ class LayananController extends Controller
     }
 
     public function dosenSempro(){
-        $sempros = Sempro::with('mahasiswa')->get();
+        $kaprodi = Auth::user();
+        $prodi = $kaprodi->prodi;
+        $sempros = Sempro::whereHas('mahasiswa', function ($query) use ($prodi) {
+            $query->where('prodi_id', $prodi->id);
+        })->get();
+
         return view('front.dosen.sempro', compact('sempros'));
     }
 
@@ -49,7 +56,8 @@ class LayananController extends Controller
 
     public function setDosenPenguji(string $id){
         $sempros = Sempro::findOrFail($id);
-        return view('front.dosen.set-penguji', compact('sempros'));
+        $ruang = $this->ruang;
+        return view('front.dosen.set-penguji', compact('sempros','ruang'));
     }
 
     public function addDosenPenguji(string $id){
@@ -58,11 +66,40 @@ class LayananController extends Controller
         return view('front.dosen.add-penguji', compact('sempros','dosens'));
     }
 
-    public function saveDosenPenguji(string $id){
+    public function saveDosenPenguji(Request $request, string $id){
+        $validSempro = $request->validate([
+            'dosen_id'      => 'required',
+            'sebagai'      => 'required',
+            'ke'           => 'required',
+        ]);
+
         $sempros = Sempro::findOrFail($id);
-        $sempros->dosen()->attach(request('dosen_id'));
+        $sempros->dosen()->attach($validSempro['dosen_id'],
+        ['sebagai' => $validSempro['sebagai'], 'ke' => $validSempro['ke']]);
+
         return redirect()->route('dosen.sempro.penguji', $id)
         ->with('success','Dosen penguji berhasil di tambahkan');
+    }
+
+    public function saveJadwal(Request $request, string $id){
+        $sempros = Sempro::findOrFail($id);
+        $validSempro = $request->validate([
+            'tanggal_sempro'    => 'required',
+            'jam_mulai'         => 'required',
+            'jam_selesai'       => 'required',
+            'ruang'             => 'required',
+        ]);
+        $validSempro['status'] = 5;
+        $sempros->update($validSempro);
+        return redirect()->route('dosen.sempro.penguji', $id)
+        ->with('success','Jadwal mahasiswa berhasil');
+    }
+
+    public function destroyPenguji(string $id, Request $request){
+        $sempros = Sempro::findOrFail($id);
+        $sempros->dosen()->detach($request->dosen_id);
+        return redirect()->route('dosen.sempro.penguji', $id)
+        ->with('success','Dosen penguji berhasil di hapus');
     }
 
 }
