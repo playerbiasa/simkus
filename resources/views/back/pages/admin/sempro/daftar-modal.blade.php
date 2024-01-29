@@ -16,7 +16,7 @@
                         <label>Nomor Induk Mahasiswa (NIM)</label>
                         <input type="hidden" name="redirect_to" value="{{ route('admin.sempro.index') }}">
                         <input type="hidden" id="mahasiswa_id" name="mahasiswa_id">
-                        <input type="text" class="form-control" id="nim" name="nim" required>
+                        <input type="text" class="form-control" id="nim" name="nim" required autofocus>
                     </div>
                     <div class="form-group">
                         <label>Nama</label>
@@ -34,8 +34,10 @@
                     <div class="form-group">
                         <label>Batch Kegiatan</label>
                         <select class="form-control" name="batch_id" id="batch_id" required>
-                            @foreach ($batches as $batch)
-                            <option value="{{ $batch->id }}">{{ $batch->nama }} | {{ $batch->kegiatan->deskripsi }} | {{ $batch->tahun }}</option>
+                            @foreach ($sempros as $batchs)
+                                <option value="{{ $batchs->id }}">{{ $batchs->nama }} |
+                                    {{ $batchs->batch->kegiatan->deskripsi }} | {{ $batchs->batch->kegiatan->tahun }}
+                                </option>
                             @endforeach
                         </select>
                     </div>

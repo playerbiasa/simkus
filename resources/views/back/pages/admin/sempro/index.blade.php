@@ -84,6 +84,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                {{ $sempros->links() }}
                             </div>
                         </div>
                     </div>

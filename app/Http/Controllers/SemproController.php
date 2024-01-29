@@ -12,10 +12,9 @@ class SemproController extends Controller
     private $ruang    = ["2.06", "2.09", "2.10", "3.06", "3.07", "3.10"];
 
     public function index(){
-        $sempros = Sempro::with('mahasiswa')->get();
-        $batches = Batch::with('kegiatan')->get();
+        $sempros = Sempro::with('mahasiswa','batch')->paginate(5);
 
-        return view('back.pages.admin.sempro.index', compact('sempros','batches'));
+        return view('back.pages.admin.sempro.index', compact('sempros'));
     }
 
     public function store(Request $request){
