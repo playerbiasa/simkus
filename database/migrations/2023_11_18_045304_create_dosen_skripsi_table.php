@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('sebagai', 100);
             $table->string('ke', 100);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('skripsi_id')->references('id')->on('skripsis');
             $table->foreign('dosen_id')->references('id')->on('dosens');

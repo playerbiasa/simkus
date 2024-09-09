@@ -1,1 +1,1 @@
-php artisan serve --host 192.168.1.114 --port=8124
+php artisan serve --host 192.168.1.119 --port=8124

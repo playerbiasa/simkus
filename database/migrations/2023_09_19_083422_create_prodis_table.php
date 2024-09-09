@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('singkatan')->nullable();
             $table->string('jenjang')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

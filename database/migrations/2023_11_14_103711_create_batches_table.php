@@ -17,7 +17,9 @@ return new class extends Migration
             $table->date('mulai');
             $table->date('selesai');
             $table->integer('tahun');
+            $table->boolean('is_active')->nullable()->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

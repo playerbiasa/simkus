@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Admin;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
@@ -17,9 +16,9 @@ class AdminSeeder extends Seeder
         Admin::create([
             'nama' => 'Muhammad Slamet',
             'username' => 'admin1',
-            'email' => 'admin1@gmail.com',
+            'email' => 'admin1@mail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('123456'),
+            'password' => bcrypt('123456'),
             'status' => 1,
             'remember_token' => rand()
         ]);
@@ -27,9 +26,9 @@ class AdminSeeder extends Seeder
         Admin::create([
             'nama' => 'Adi Cahyono',
             'username' => 'admin2',
-            'email' => 'admin2@gmail.com',
+            'email' => 'admin2@mail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('123456'),
+            'password' => bcrypt('123456'),
             'status' => 1,
             'remember_token' => rand()
         ]);
@@ -37,9 +36,9 @@ class AdminSeeder extends Seeder
         Admin::create([
             'nama' => 'Humaidi',
             'username' => 'admin3',
-            'email' => 'admin3@gmail.com',
+            'email' => 'admin3@mail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('123456'),
+            'password' => bcrypt('123456'),
             'status' => 1,
             'remember_token' => rand()
         ]);

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Batch;
 use App\Models\Dosen;
 use App\Models\Sempro;
 use Illuminate\Http\Request;

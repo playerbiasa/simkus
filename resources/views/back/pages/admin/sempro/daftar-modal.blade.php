@@ -35,8 +35,8 @@
                         <label>Batch Kegiatan</label>
                         <select class="form-control" name="batch_id" id="batch_id" required>
                             @foreach ($sempros as $batchs)
-                                <option value="{{ $batchs->id }}">{{ $batchs->nama }} |
-                                    {{ $batchs->batch->kegiatan->deskripsi }} | {{ $batchs->batch->kegiatan->tahun }}
+                                <option value="{{ $batchs->batch->id }}">{{ $batchs->batch->nama }} |
+                                    {{ $batchs->batch->kegiatan->deskripsi }} | {{ $batchs->batch->tahun }}
                                 </option>
                             @endforeach
                         </select>
